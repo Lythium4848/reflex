@@ -55,7 +55,7 @@ export default function Servers() {
                                         {players === "Offline" && <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{server.name} - <a className="text-lg text-red-500">Offline</a></h5>}
                                         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{server.description}</p>
                                         <a href={`steam://connect/${server.ip}`}
-                                           className={`inline-flex items-center py-2 px-3 text-sm font-medium text-center text-black dark:text-white bg-indigo-600 rounded-lg hover:bg-indigo-700`}>
+                                           className={`inline-flex items-center py-2 px-3 mt-2 text-sm font-medium text-center text-black dark:text-white bg-primary rounded-lg hover:bg-indigo-700`}>
                                             Join Server
                                             <svg className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
                                                  xmlns="http://www.w3.org/2000/svg">
