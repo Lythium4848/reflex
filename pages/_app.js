@@ -7,7 +7,6 @@ import React from 'react'
 import Head from "next/head";
 import {ThemeProvider} from 'next-themes'
 import getConfig from "next/config";
-import {SessionProvider} from "next-auth/react"
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -23,13 +22,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
             />
             <title>{publicRuntimeConfig.name}</title>
           </Head>
-          <SessionProvider session={session}>
-              <ThemeProvider attribute="class">
-                <Navbar/>
-                <Component {...pageProps} />
-                <Footer/>
-            </ThemeProvider>
-          </SessionProvider>
+          <ThemeProvider attribute="class">
+              <Navbar/>
+              <Component {...pageProps} />
+              <Footer/>
+          </ThemeProvider>
       </>
   )
 }

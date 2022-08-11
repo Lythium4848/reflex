@@ -12,6 +12,7 @@
     "@emotion/react": "^11.9.3",
     "@heroicons/react": "^1.0.6",
     "axios": "^0.27.2",
+    "eslint": "^8.21.0",
     "flowbite": "^1.4.7",
     "flowbite-react": "^0.1.0",
     "framer-motion": "^6.3.16",
