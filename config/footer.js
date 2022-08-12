@@ -11,6 +11,14 @@ const footerConfig = {
         {
             name: "Store",
             path: "/store"
+        },
+        {
+            name: "Privacy Policy",
+            path: "/legal/privacy"
+        },
+        {
+            name: "Terms",
+            path: "/legal/terms"
         }
     ]
 }
