@@ -1,18 +1,14 @@
 import cache from "memory-cache";
 import axios from "axios";
-import getConfig from 'next/config'
-const { serverRuntimeConfig } = getConfig()
 
 const cachedFetch = async (req, res, ip, port) => {
     const cachedResponse = cache.get(`${ip}:${port}`);
     if (cachedResponse) {
-        console.debug("getting from cache")
         res.status(200).json({ state: cachedResponse });
     } else {
-        console.log("getting new")
         const response = await axios.get('https://api.steampowered.com/IGameServersService/GetServerList/v1', {
             params: {
-                key: serverRuntimeConfig.apiKey,
+                key: process.env.STEAM_API_KEY,
                 filter: `\\appid\\4000\\addr\\${ip}:${port}`
             }
         })

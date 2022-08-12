@@ -1,5 +1,5 @@
 import getConfig from 'next/config'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {motion} from "framer-motion";
 
 const { publicRuntimeConfig } = getConfig()
@@ -16,25 +16,28 @@ export default function Servers() {
                 <div className="py-5 grid grid-flow-col">
                     <ul className="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
                         {servers.map((server, index) => {
-                            const [players, setPlayers] = React.useState("Offline");
-                            const [maxPlayers, setMaxPlayers] = React.useState("Offline");
+                            const [players, setPlayers] = useState("Offline");
+                            const [maxPlayers, setMaxPlayers] = useState("Offline");
                             async function updateInfo(data) {
                                 setPlayers(data.players)
                                 setMaxPlayers(data.maxPlayers)
                             }
                             const ip = server.ip
                             const port = server.port
-                            axios.post(`${publicRuntimeConfig.url}/api/server?ip=${ip}&port=${port}`).then(res => {
-                                const data =  {
-                                    players: res.data.state[0].players,
-                                    maxPlayers: res.data.state[0].max_players,
-                                    map: res.data.state[0].map
-                                }
-                                updateInfo(data).then(() => console.debug("Got Info"))
-                                return data
-                            }).catch(error => {
-                                console.error(error);
-                            });
+
+                            useEffect(()=>{
+                                axios.post(`${publicRuntimeConfig.url}/api/server?ip=${ip}&port=${port}`).then(res => {
+                                    const data =  {
+                                        players: res.data.state[0].players,
+                                        maxPlayers: res.data.state[0].max_players,
+                                        map: res.data.state[0].map
+                                    }
+                                    updateInfo(data).then(() => console.debug("Got Info"))
+                                    return data
+                                }).catch(error => {
+                                    console.error(error);
+                                });
+                            },[]);
 
                             return (
                                 <motion.div

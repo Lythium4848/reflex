@@ -1,14 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  serverRuntimeConfig: {
-    apiKey: process.env.STEAM_API_KEY || ""
+  env: {
+    API_KEY: process.env.STEAM_API_KEY
   },
   publicRuntimeConfig: {
     name: 'Reflex',
     description: 'A simple website made for Game Servers',
     logo: '/static/reflex.png',
-    url: 'https://reflex.lythium.vip',
+    url: process.env.APP_URL,
     featuresTitle: 'Features',
     featuresDesc: 'What Reflex has to offer',
     serversTitle: 'Servers',
