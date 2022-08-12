@@ -50,14 +50,38 @@ const nextConfig = {
         description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
         img: './assets/img/darkrp.jpg',
         ip: '51.68.200.55',
-        port: '27015'
+        port: '27015',
+        color: 'red-500'
       },
       {
         name: 'Waurum Pedobear',
         description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
         img: './assets/img/pedobear.png',
         ip: '213.32.89.5',
-        port: '27008'
+        port: '27008',
+        color: 'cyan-300'
+      }
+    ],
+    managementTitle: 'Management',
+    managementDesc: 'The people who run this community',
+    management: [
+      {
+        name: 'Lythium',
+        role: 'Management',
+        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+        img: 'https://avatars.githubusercontent.com/u/62567544?s=400&u=2f0a7977f321b07f303db409f0d8dc90b2ad14a8',
+        color: 'indigo-600',
+        button: {
+          text: 'Website',
+          link:'https://lythium.vip'
+        }
+      },
+      {
+        name: 'Lythium 2',
+        role: 'Management',
+        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+        img: './assets/img/profile.jpg',
+        color: 'green-500'
       }
     ],
     footerLinks: [

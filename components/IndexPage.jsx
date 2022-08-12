@@ -1,6 +1,7 @@
 import Header from './index/Header'
 import Features from './index/Features'
 import Servers from './index/Servers'
+import Management from './index/Management'
 import React from "react";
 
 export default function IndexPage() {
@@ -19,6 +20,11 @@ export default function IndexPage() {
             <div className="py-5" id="hero overflow-hidden">
                 <div className="container py-5" id="hero-inner">
                     <Servers/>
+                </div>
+            </div>
+            <div className="py-5" id="hero overflow-hidden">
+                <div className="container py-5" id="hero-inner">
+                    <Management/>
                 </div>
             </div>
         </div>

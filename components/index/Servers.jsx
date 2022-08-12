@@ -48,9 +48,8 @@ export default function Servers() {
                                     viewport={{ once: true }}
                                 >
                                     <a>
-                                        <img className="max-w-sm rounded-t-lg"
-                                             src={server.img}
-                                             alt=""/>
+                                        <img className={`border-b-2 border-solid border-${server.color} object-cover rounded-t-lg h-48 w-full`}
+                                             src={server.img}/>
                                     </a>
                                     <div className="mx-4 my-4 p-2">
 
