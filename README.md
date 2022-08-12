@@ -1,14 +1,13 @@
 # Reflex
 
-A Simple website made for Game servers made with Next.JS and TailwindCSS
+A Simple website made for Game servers made with **[Next.JS](https://nextjs.org/)** and **[TailwindCSS](https://tailwindcss.com/)**
 
-currently only supports garry's mod for servers
+## ▲ Deploy on Vercel
+The easiest and best way to deploy Reflex is on the [Vercel Platform](https://vercel.com)
+Click the button below to get started
 
-made it because i got bored
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FLythium4848%2Freflex-site&env=STEAM_API_KEY&project-name=reflex&repo-name=reflex)
 
-## building or something:
-* run `npm install`
-* run `npm run dev`
-* done
-
-if it doesn't work don't ask me for help
+## Development:
+* Run `npm install`
+* Run `npm run dev`
