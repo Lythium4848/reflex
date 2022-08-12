@@ -2,6 +2,8 @@
 
 A Simple website made for Game servers made with **[Next.JS](https://nextjs.org/)** and **[TailwindCSS](https://tailwindcss.com/)**
 
+Check out the supported games [here](https://github.com/Lythium4848/reflex-site/blob/master/supported-games.md)
+
 ## ▲ Deploy on Vercel
 The easiest and best way to deploy Reflex is on the [Vercel Platform](https://vercel.com)
 Click the button below to get started

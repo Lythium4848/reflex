@@ -1,22 +1,24 @@
 const serversConfig = {
     serversTitle: 'Servers',
     serversDesc: 'bottom text',
-    servers: [ //Only supports Garry's mod at the moment
+    servers: [
         {
-            name: 'Fudgy\'s DarkRP',
+            name: 'CubeCraft',
             description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            img: './assets/img/darkrp.jpg',
-            ip: '51.68.200.55',
-            port: '27015',
-            color: 'red-500'
+            img: './assets/img/cubecraft.png',
+            type: 'minecraftbe',
+            ip: 'PLAY.CUBECRAFT.NET',
+            port: 19132,
+            color: 'sky-500'
         },
         {
-            name: 'Waurum Pedobear',
+            name: 'Hypixel',
             description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            img: './assets/img/pedobear.png',
-            ip: '213.32.89.5',
-            port: '27008',
-            color: 'cyan-300'
+            img: './assets/img/hypixel.png',
+            ip: 'MC.HYPIXEL.NET',
+            type: 'minecraft',
+            port: null,
+            color: 'yellow-400'
         }
     ],
 }

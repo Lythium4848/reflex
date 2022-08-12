@@ -1,10 +1,19 @@
 import getConfig from 'next/config'
 import React, { useState, useEffect } from 'react'
 import {motion} from "framer-motion";
-
 const { publicRuntimeConfig } = getConfig()
 const servers = publicRuntimeConfig.servers
 const axios = require('axios');
+
+const gameNames = {
+    garrysmod: 'Garry\'s Mod',
+    minecraft: 'Minecraft',
+    minecraftbe: 'Minecraft Bedrock',
+    csgo: 'CS:GO',
+    fivem: 'FiveM',
+    terraria: 'Terraria'
+}
+
 
 export default function Servers() {
 
@@ -18,21 +27,22 @@ export default function Servers() {
                         {servers.map((server, index) => {
                             const [players, setPlayers] = useState("Offline");
                             const [maxPlayers, setMaxPlayers] = useState("Offline");
+
                             async function updateInfo(data) {
                                 setPlayers(data.players)
                                 setMaxPlayers(data.maxPlayers)
                             }
                             const ip = server.ip
                             const port = server.port
+                            const type = server.type
 
                             useEffect(()=>{
-                                axios.post(`${publicRuntimeConfig.url}/api/server?ip=${ip}&port=${port}`).then(res => {
+                                axios.post(`${publicRuntimeConfig.url}/api/server?ip=${ip}&port=${port}&type=${type}`).then(res => {
                                     const data =  {
-                                        players: res.data.state[0].players,
-                                        maxPlayers: res.data.state[0].max_players,
-                                        map: res.data.state[0].map
+                                        players: res.data.state.players,
+                                        maxPlayers: res.data.state.maxPlayers,
                                     }
-                                    updateInfo(data).then(() => console.debug("Got Info"))
+                                    updateInfo(data).then(() => console.log(data))
                                     return data
                                 }).catch(error => {
                                     console.error(error);
@@ -49,12 +59,13 @@ export default function Servers() {
                                 >
                                     <a>
                                         <img className={`border-b-2 border-solid border-${server.color} object-cover rounded-t-lg h-48 w-full`}
-                                             src={server.img}/>
+                                             src={server.img} alt="Server Image"/>
                                     </a>
                                     <div className="mx-4 my-4 p-2">
 
-                                        {players !== "Offline" && <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{server.name} - {players}<a className="text-sm text-gray-700 dark:text-gray-400">/{maxPlayers}</a></h5>}
-                                        {players === "Offline" && <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{server.name} - <a className="text-lg text-red-500">Offline</a></h5>}
+                                        {players !== "Offline" && <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{server.name} - {players}<a className="text-sm text-gray-700 dark:text-gray-400">/{maxPlayers}</a></h5>}
+                                        {players === "Offline" && <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{server.name} - <a className="text-lg text-red-500">Offline</a></h5>}
+                                        <a className="text-xs uppercase font-extrabold text-gray-700 dark:text-gray-400">{gameNames[server.type]}</a>
                                         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{server.description}</p>
                                         <a href={`steam://connect/${server.ip}`}
                                            className={`inline-flex items-center py-2 px-3 mt-2 text-sm font-medium text-center text-black dark:text-white bg-primary rounded-lg hover:bg-indigo-700`}>
@@ -66,10 +77,14 @@ export default function Servers() {
                                                       />
                                             </svg>
                                         </a>
-                                        <a
+                                        {server.port != null && <a
                                            className="ml-4 py-1 px-2 text-xs font-medium text-center text-white bg-gray-600 dark:bg-gray-500 rounded-lg">
                                             {server.ip}:{server.port}
-                                        </a>
+                                        </a>}
+                                        {server.port == null && <a
+                                            className="ml-4 py-1 px-2 text-xs font-medium text-center text-white bg-gray-600 dark:bg-gray-500 rounded-lg">
+                                            {server.ip}
+                                        </a>}
                                     </div>
                                 </motion.div>
                             );

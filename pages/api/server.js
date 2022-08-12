@@ -1,20 +1,23 @@
 import cache from "memory-cache";
-import axios from "axios";
+import serverFunctions from "../../helpers/ServerDataFetch";
+const Gamedig = require('gamedig');
 
-const cachedFetch = async (req, res, ip, port) => {
-    const cachedResponse = cache.get(`${ip}:${port}`);
+const cachedFetch = async (req, res, ip, port, type) => {
+    const cachedResponse = cache.get(`${ip}:${type}`);
     if (cachedResponse) {
         res.status(200).json({ state: cachedResponse });
     } else {
-        const response = await axios.get('https://api.steampowered.com/IGameServersService/GetServerList/v1', {
-            params: {
-                key: process.env.STEAM_API_KEY,
-                filter: `\\appid\\4000\\addr\\${ip}:${port}`
-            }
-        })
-        const responseData = response.data.response.servers
-        await cache.put(`${ip}:${port}`, responseData, 600000)
-        await res.status(200).json({ state: responseData });
+        Gamedig.query({
+            type: type,
+            host: ip,
+            port: port
+        }).then(async (state) => {
+            const data = await serverFunctions[type](state)
+            await cache.put(`${ip}-${type}`, data, 600000)
+            await res.status(200).json({state: data});
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 }
 
@@ -24,7 +27,8 @@ export default async function handler(req, res) {
             const data = req.query
             const ip = data.ip;
             const port = data.port;
-            cachedFetch(req, res, ip, port)
+            const type = data.type
+            cachedFetch(req, res, ip, port, type)
         } else {
             return res.status(405).json({ message: 'Method not allowed.' });
         }
