@@ -1,6 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const tailwindConfig = {
   darkMode: 'class',
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -16,6 +17,8 @@ module.exports = {
         backgrounddark: '#121212',
         backgroundlight: '#f2f2f2',
         primary: '#ef505d',
+        steam: '#171a21',
+        blurple: '#5865F2',
       }
     },
   },
@@ -23,3 +26,4 @@ module.exports = {
     require('flowbite/plugin')
   ]
 }
+module.exports = tailwindConfig

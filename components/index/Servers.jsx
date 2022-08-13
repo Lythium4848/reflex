@@ -42,7 +42,7 @@ export default function Servers() {
                                         players: res.data.state.players,
                                         maxPlayers: res.data.state.maxPlayers,
                                     }
-                                    updateInfo(data).then(() => console.log(data))
+                                    updateInfo(data)
                                     return data
                                 }).catch(error => {
                                     console.error(error);
@@ -58,7 +58,7 @@ export default function Servers() {
                                     viewport={{ once: true }}
                                 >
                                     <a>
-                                        <img className={`border-b-2 border-solid border-${server.color} object-cover rounded-t-lg h-48 w-full`}
+                                        <img className={`border-b-2 border-solid border-black dark:border-white object-cover rounded-t-lg h-48 w-full`}
                                              src={server.img} alt="Server Image"/>
                                     </a>
                                     <div className="mx-4 my-4 p-2">
@@ -68,7 +68,7 @@ export default function Servers() {
                                         <a className="text-xs uppercase font-extrabold text-gray-700 dark:text-gray-400">{gameNames[server.type]}</a>
                                         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{server.description}</p>
                                         <a href={`steam://connect/${server.ip}`}
-                                           className={`inline-flex items-center py-2 px-3 mt-2 text-sm font-medium text-center text-black dark:text-white bg-primary rounded-lg hover:bg-indigo-700`}>
+                                           className={`inline-flex items-center py-2 px-3 mt-2 text-sm font-medium text-center text-black dark:text-white bg-primary rounded-sm hover:bg-indigo-700`}>
                                             Join Server
                                             <svg className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -78,11 +78,11 @@ export default function Servers() {
                                             </svg>
                                         </a>
                                         {server.port != null && <a
-                                           className="ml-4 py-1 px-2 text-xs font-medium text-center text-white bg-gray-600 dark:bg-gray-500 rounded-lg">
+                                           className="ml-4 py-1 px-2 text-xs font-medium text-center text-white bg-gray-600 dark:bg-gray-500 rounded-sm">
                                             {server.ip}:{server.port}
                                         </a>}
                                         {server.port == null && <a
-                                            className="ml-4 py-1 px-2 text-xs font-medium text-center text-white bg-gray-600 dark:bg-gray-500 rounded-lg">
+                                            className="ml-4 py-1 px-2 text-xs font-medium text-center text-white bg-gray-600 dark:bg-gray-500 rounded-sm">
                                             {server.ip}
                                         </a>}
                                     </div>

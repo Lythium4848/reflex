@@ -1,13 +1,13 @@
 const managementConfig = {
     managementTitle: 'Management',
-    managementDesc: 'The people who run this community',
+    managementDesc: 'The people who run the community',
     management: [
         {
             name: 'Lythium',
             role: 'Management',
             description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            img: 'https://avatars.githubusercontent.com/u/62567544?s=400&u=2f0a7977f321b07f303db409f0d8dc90b2ad14a8',
-            color: 'indigo-600',
+            img: 'https://avatars.githubusercontent.com/u/62567544',
+            color: '#6C00FF',
             button: {
                 text: 'Website',
                 link:'https://lythium.vip'
@@ -18,7 +18,7 @@ const managementConfig = {
             role: 'Management',
             description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             img: './assets/img/profile.jpg',
-            color: 'green-500'
+            color: '#51FF00'
         }
     ],
 }

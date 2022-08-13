@@ -7,8 +7,8 @@ class MyDocument extends Document {
             <Html lang="en">
                 <Head />
                 <body className="bg-slate-200 dark:bg-backgrounddark text-black dark:text-white">
-                <Main />
-                <NextScript />
+                    <Main />
+                    <NextScript />
                 </body>
             </Html>
         )

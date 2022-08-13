@@ -11,7 +11,8 @@ const termsConfig = require("./config/legal/terms");
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    API_KEY: process.env.STEAM_API_KEY
+    API_KEY: process.env.STEAM_API_KEY,
+    SESSION_SECRET: process.env.SESSION_SECRET
   },
   publicRuntimeConfig: {
     name: mainConfig.name,
@@ -34,7 +35,8 @@ const nextConfig = {
     privacyDetails: privacyConfig.details,
     termsTitle: termsConfig.title,
     termsDesc: termsConfig.description,
-    termsDetails: termsConfig.details
+    termsDetails: termsConfig.details,
+    theme: mainConfig.theme
   }
 }
 

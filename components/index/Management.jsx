@@ -24,15 +24,15 @@ export default function Management() {
                                     viewport={{ once: true }}
                                 >
                                     <a>
-                                        <img className={`border-b-2 border-solid border-${management.color} object-cover rounded-t-lg h-48 w-full`}
+                                        <img className={`border-b-2 border-solid border-black dark:border-white object-cover rounded-t-lg h-48 w-full`}
                                              src={management.img}/>
                                     </a>
                                     <div className="mx-4 my-4 p-2">
                                         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{management.name}</h5>
-                                        <a className="text-2xl font-bold text-sm text-gray-700 dark:text-gray-400">{management.role}</a>
+                                        <a className="text-xs uppercase font-extrabold text-gray-700 dark:text-gray-400">{management.role}</a>
                                         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{management.description}</p>
                                         {management.button != null && <a href={management.button.link}
-                                           className={`inline-flex items-center py-2 px-3 mt-2 text-sm font-medium text-center text-black dark:text-white bg-${management.color} rounded-lg hover:bg-${management.color}/50`}>
+                                           className={`management-button inline-flex items-center px-1 mt-2 text-sm font-medium text-center text-black dark:text-white underline`}>
                                             {management.button.text}
                                             <svg className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
                                                  xmlns="http://www.w3.org/2000/svg">

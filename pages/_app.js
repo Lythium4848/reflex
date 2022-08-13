@@ -23,12 +23,18 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
             <title>{publicRuntimeConfig.name}</title>
           </Head>
           <ThemeProvider attribute="class">
-              <Navbar/>
-              <Component {...pageProps} />
-              <Footer/>
+              {Component.name === "Home" && <div>
+                  <Component {...pageProps} />
+                  <Footer/>
+              </div>}
+              {Component.name !== "Home" && <div>
+                  <Navbar/>
+                  <Component {...pageProps} />
+                  <Footer/>
+              </div>
+          }
           </ThemeProvider>
       </>
   )
 }
-
 export default MyApp
