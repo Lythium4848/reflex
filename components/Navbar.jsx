@@ -3,6 +3,7 @@ import getConfig from 'next/config'
 import {useTheme} from 'next-themes'
 import {Menu, Transition} from '@headlessui/react'
 import {Fragment, useState} from 'react'
+import { ChevronDownIcon } from '@heroicons/react/solid'
 
 const {publicRuntimeConfig} = getConfig()
 const navLinks = publicRuntimeConfig.navLinks
@@ -12,6 +13,9 @@ const Navbar = ({user}) => {
     const [active, setActive] = useState(false)
     const handleClick = () => {
         setActive(!active)
+    }
+    const toggleTheme = () => {
+        setTheme(theme === 'light' ? 'dark' : 'light')
     }
 
     return (<div>
@@ -50,26 +54,54 @@ const Navbar = ({user}) => {
                     {navLinks.map((navLink, number) => {
                         return (
                             <div key={number}>
-                                <Link href={navLink.path}>
+                                {navLink.dropdown === undefined && <Link href={navLink.path}>
                                     <a className='lg:inline-flex lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:bg-slate-400 dark:hover:bg-neutral-900'>
                                         {navLink.name}
                                     </a>
-                                </Link>
+                                </Link>}
+                                {navLink.dropdown !== undefined && <Menu>
+                                    <Menu.Button
+                                        className='lg:inline-flex lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:bg-slate-400 dark:hover:bg-neutral-900'>
+                                        {navLink.name}
+                                        <ChevronDownIcon
+                                            className="ml-1 -mr-1 h-5 w-5 text-black hover:text-gray-600 dark:text-white dark:hover:text-gray-300"
+                                            aria-hidden="true"
+                                        />
+                                    </Menu.Button>
+                                    <Transition
+                                        as={Fragment}
+                                        enter="transition ease-out duration-100"
+                                        enterFrom="transform opacity-0 scale-95"
+                                        enterTo="transform opacity-100 scale-100"
+                                        leave="transition ease-in duration-75"
+                                        leaveFrom="transform opacity-100 scale-100"
+                                        leaveTo="transform opacity-0 scale-95"
+                                    >
+                                        <Menu.Items
+                                            className="absolute mt-2 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-slate-300 dark:bg-neutral-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                            <div className="px-1 py-1 ">
+                                                {navLink.dropdown.map((links, n) => {
+                                                    return (
+                                                        <div key={n}>
+                                                            <Menu.Item>
+                                                                {({}) => (
+                                                                    <Link href={links.path} className={`group flex w-full items-center rounded-md px-2 py-2 text-sm font-bold`}>
+                                                                        <button className={`group flex w-full items-center rounded-md px-2 py-2 text-sm font-bold hover:bg-slate-400 dark:hover:bg-neutral-900`}>
+                                                                            {links.name}
+                                                                        </button>
+                                                                    </Link>
+                                                                )}
+                                                            </Menu.Item>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
+                                        </Menu.Items>
+                                    </Transition>
+                                </Menu>}
                             </div>
                         )
                     })}
-                    <div
-                        className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:bg-slate-400 dark:hover:bg-neutral-900">
-                        <button type="button" onClick={() => {
-                            if (theme === "light") {
-                                setTheme("dark")
-                            } else {
-                                setTheme('light')
-                            }
-                        }}>
-                            <i className="fa-solid fa-eclipse"></i>
-                        </button>
-                    </div>
                     <div>
                         {user != null &&
                             <Menu>
@@ -94,10 +126,17 @@ const Navbar = ({user}) => {
                                             <Menu.Item>
                                                 {({}) => (
                                                     <Link href="/api/auth/steam/logout" className={`group flex w-full items-center rounded-md px-2 py-2 text-sm font-bold`}>
-                                                        <button className={`group flex w-full items-center rounded-md px-2 py-2 text-sm font-bold`}>
+                                                        <button className={`group flex w-full items-center rounded-md px-2 py-2 text-sm font-bold hover:bg-slate-400 dark:hover:bg-neutral-900`}>
                                                             Logout
                                                         </button>
                                                     </Link>
+                                                )}
+                                            </Menu.Item>
+                                            <Menu.Item>
+                                                {({}) => (
+                                                    <button className={`group flex w-full items-center rounded-md px-2 py-2 text-sm font-bold hover:bg-slate-400 dark:hover:bg-neutral-900`} onClick={toggleTheme}>
+                                                        Switch Theme
+                                                    </button>
                                                 )}
                                             </Menu.Item>
                                         </div>

@@ -11,6 +11,19 @@ const navbarConfig = {
         {
             name: "Store",
             path: "/store"
+        },
+        {
+            name: "Other",
+            dropdown: [
+                {
+                    name: "TOS",
+                    path: "/legal/terms"
+                },
+                {
+                    name: "Privacy Policy",
+                    path: "/legal/privacy"
+                },
+            ]
         }
     ],
 }

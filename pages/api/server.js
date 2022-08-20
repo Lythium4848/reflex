@@ -15,8 +15,7 @@ const cachedFetch = async (req, res, ip, port, type) => {
             const data = await serverFunctions[type](state)
             await cache.put(`${ip}-${type}`, data, 600000)
             await res.status(200).json({state: data});
-        }).catch((error) => {
-            console.log(error);
+        }).catch(() => {
         });
     }
 }

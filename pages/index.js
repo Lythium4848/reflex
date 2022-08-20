@@ -4,12 +4,10 @@ import Servers from '../components/index/Servers'
 import Management from '../components/index/Management'
 import React from "react";
 import router from "../lib/router";
-import Navbar from "../components/Navbar";
 
-export default function Home({user}) {
+export default function Home() {
   return (
       <div>
-          <Navbar user={user}/>
           <div className="flex align-center justify-center">
               <div>
                   <div className="py-5" id="hero overflow-hidden">

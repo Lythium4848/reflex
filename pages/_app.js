@@ -7,10 +7,11 @@ import React from 'react'
 import Head from "next/head";
 import {ThemeProvider} from 'next-themes'
 import getConfig from "next/config";
+import router from "../lib/router";
 
 const { publicRuntimeConfig } = getConfig()
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+function MyApp({ Component, pageProps: { session, user, ...pageProps }}) {
   return (
       <>
           <Script src="https://kit.fontawesome.com/74de4910c5.js" />
@@ -23,18 +24,16 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
             <title>{publicRuntimeConfig.name}</title>
           </Head>
           <ThemeProvider attribute="class">
-              {Component.name === "Home" && <div>
-                  <Component {...pageProps} />
-                  <Footer/>
-              </div>}
-              {Component.name !== "Home" && <div>
-                  <Navbar/>
-                  <Component {...pageProps} />
-                  <Footer/>
-              </div>
-          }
+              <Navbar user={user}/>
+              <Component {...pageProps} />
+              <Footer/>
           </ThemeProvider>
       </>
   )
 }
 export default MyApp
+
+export async function getInitialProps({req, res}) {
+    await router.run(req, res);
+    return { props: { user: req.user || null } };
+}
