@@ -3,7 +3,6 @@ import Features from '../components/index/Features'
 import Servers from '../components/index/Servers'
 import Management from '../components/index/Management'
 import React from "react";
-import router from "../lib/router";
 
 export default function Home() {
   return (
@@ -34,9 +33,4 @@ export default function Home() {
           </div>
       </div>
   )
-}
-
-export async function getServerSideProps({req, res}) {
-    await router.run(req, res);
-    return { props: { user: req.user || null } };
 }

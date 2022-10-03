@@ -7,7 +7,7 @@ import React from 'react'
 import Head from "next/head";
 import {ThemeProvider} from 'next-themes'
 import getConfig from "next/config";
-import router from "../lib/router";
+import { SessionProvider } from "next-auth/react"
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -23,17 +23,16 @@ function MyApp({ Component, pageProps: { session, user, ...pageProps }}) {
             />
             <title>{publicRuntimeConfig.name}</title>
           </Head>
-          <ThemeProvider attribute="class">
-              <Navbar user={user}/>
-              <Component {...pageProps} />
-              <Footer/>
-          </ThemeProvider>
+          <SessionProvider session={session}>
+              <ThemeProvider attribute="class">
+                  <Navbar user={user}/>
+                  <Component {...pageProps} />
+                  <div className="bottom-0 w-full">
+                      <Footer/>
+                  </div>
+              </ThemeProvider>
+          </SessionProvider>
       </>
   )
 }
 export default MyApp
-
-export async function getInitialProps({req, res}) {
-    await router.run(req, res);
-    return { props: { user: req.user || null } };
-}

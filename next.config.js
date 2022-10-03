@@ -37,6 +37,9 @@ const nextConfig = {
     termsDesc: termsConfig.description,
     termsDetails: termsConfig.details,
     theme: mainConfig.theme
+  },
+  images: {
+    domains: ["cdn.discordapp.com"]
   }
 }
 

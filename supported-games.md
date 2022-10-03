@@ -2,7 +2,7 @@
 
 Currently Reflex supports these games for showing server data on the homepage:
 
-*Shown as - GameName (gameid)*
+_Shown as - GameName (gameid)_
 
 - Garry's Mod (garrysmod)
 - Minecraft Java (minecraft)
