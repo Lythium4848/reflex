@@ -30,8 +30,6 @@
     "next-seo": "^5.4.0",
     "next-themes": "^0.2.0",
     "nextjs-redirect": "^6.0.1",
-    "passport": "^0.5.2",
-    "passport-steam": "^1.0.17",
     "postcss-import": "^15.0.0",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
