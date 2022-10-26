@@ -113,6 +113,15 @@ const Navbar = ({user}) => {
                                             <div className="px-1 py-1 ">
                                                 <Menu.Item>
                                                     {({}) => (
+                                                        <a href={`/users/me`}>
+                                                            <button className={`group flex w-full items-center rounded-md px-2 py-2 text-sm font-bold hover:bg-slate-400 dark:hover:bg-neutral-900`}>
+                                                                My Profile
+                                                            </button>
+                                                        </a>
+                                                    )}
+                                                </Menu.Item>
+                                                <Menu.Item>
+                                                    {({}) => (
                                                         <div>
                                                             <button
                                                                 onClick={() => signOut()} className={`group flex w-full items-center rounded-md px-2 py-2 text-sm font-bold hover:bg-slate-400 dark:hover:bg-neutral-900`}>
@@ -135,7 +144,7 @@ const Navbar = ({user}) => {
                                     </Transition>
                                 </Menu>
                             }
-                            {session == undefined &&
+                            {session === undefined &&
                                 <div>
                                     <Link href="/login">
                                         <a className='lg:inline-flex lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:bg-slate-400 dark:hover:bg-neutral-900'>

@@ -33,8 +33,6 @@ const tailwindConfig = {
 
     },
   },
-  plugins: [
-    require('flowbite/plugin')
-  ]
+  plugins: []
 }
 module.exports = tailwindConfig

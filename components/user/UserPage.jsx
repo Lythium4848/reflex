@@ -12,7 +12,7 @@ export default function UserPage({data}) {
                             <div className="w-32 h-32 relative">
                                 <Image
                                     src={data.image}
-                                    alt="Picture of the author"
+                                    alt="Profile Picture"
                                     layout="fill"
                                     objectFit="cover"
                                     className="rounded-md"
